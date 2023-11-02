@@ -13,12 +13,12 @@ public class TaskC {
         if (onOneLine(a, b)) {
             System.out.println("on straight line");
             double sqrt = findDistanceLine(a, b);
-            return String.format(String.valueOf(sqrt), "%.6f");
+            return String.format("%.12f", sqrt);
         } else if (onCircumference(a, b)) {
             System.out.println("om circumference");
-            return String.format(String.valueOf(Math.min(findDistanceCircumference(a, b), distanceStraight(a, b))), "%.6f");
+            return String.format("%.12f", Math.min(findDistanceCircumference(a, b), distanceStraight(a, b)));
         } else {
-            return String.format(String.valueOf(Math.min(distanceThroughCircumference(a, b), distanceStraight(a, b))), "%.6f");
+            return String.format("%.12f", Math.min(distanceThroughCircumference(a, b), distanceStraight(a, b)));
         }
 
     }
@@ -46,7 +46,7 @@ public class TaskC {
         double atan2 = Math.atan2(Math.abs(b.y - a.y), Math.abs(b.x - a.x));
         double angle = atan2 * (180 / Math.PI);
         double radius = findDistanceLine(a, new Point(0, 0));
-        System.out.println("RADIUS: " + radius);
+        //System.out.println("RADIUS: " + radius);
         return (angle / 180) * (2 * Math.PI * radius);
     }
 
@@ -67,7 +67,7 @@ public class TaskC {
         double yC = Math.abs(a.y) * k;
         Point pointCircum = new Point(xC, yC);
         double distanceCircumference = findDistanceCircumference(pointCircum, b);
-        return distanceCircumference + dFromZeroA - dFromZeroB;
+        return distanceCircumference + Math.abs(dFromZeroA - dFromZeroB);
     }
 
 }
